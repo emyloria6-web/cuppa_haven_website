@@ -1,0 +1,65 @@
+#title_section{
+    font-family: 'satisfy';
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 26rem;
+    margin-right: 26rem;
+}
+
+#title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.bean_image{
+    width: 100px;
+}
+
+.content_row{
+    margin-left: 8rem;
+    margin-right: 8rem;
+    display: flex;
+    margin-bottom: 3rem;
+    justify-content: space-around;
+}
+
+.menu_card{
+    width: 25%;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 2px solid white;
+    background-color: 	#b08969;
+}
+
+.card_title{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 75%;
+}
+
+.card_image{
+    width: 100%;
+    border-radius: 12px;
+    border-radius: 2px solid black;
+}
+
+.card_price{
+    font-family: 'satisfy';
+    font-size: 3rem;
+}
+.product_name_container{
+    text-align: center;
+    margin-top: 32px;
+}
+.product_name{
+    text-align: center;
+    width: 100%;
+    font-family: 'satisfy';
+    font-size: 2.5rem;
+    color: white;
+}

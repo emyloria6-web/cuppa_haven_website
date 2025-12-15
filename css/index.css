@@ -93,6 +93,7 @@ a:hover{
 }
 .card_image{
     width: 50%;
+    border-radius: 50%;
 }
 .card_text{
     text-align: center;

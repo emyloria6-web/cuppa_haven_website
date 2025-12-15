@@ -1,0 +1,142 @@
+body{
+    background-color: #CDBF93;
+    padding: 0px !important;
+    margin: 0 !important;
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    background-color: #4B2500;
+    height: auto;
+    color: white;
+    font-family: 'satisfy';
+    align-items: center;
+    border: 2px solid white;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    color: #d8c3a5;
+}
+
+#header_left{
+    display: flex;
+    font-size: 2rem;
+    justify-content: space-around;
+    width: 30%;
+}
+#header_title{
+    font-size: 3rem;
+}
+#header_right{
+    display: flex;
+    font-size: 2rem;
+    width: 30%;
+    justify-content: space-around;
+}
+#main_section{
+    margin-top: 12px;
+    display: flex;
+    margin-bottom: 24px;
+}
+
+#coffee_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+#coffee_picture{
+    width: 75%;
+}
+#section_text{
+   width: 40%;
+   font-size: 3rem;
+   color: #5a3f31;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   padding-right: 48px;
+}
+#content_section{
+    display: flex;
+    justify-content:center;
+}
+
+#section_container{
+    background-color: #241505;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    padding: 3rem;
+    box-shadow: 0 0 34px white;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.cards{
+    background-color: #422C0E;
+    border-radius: 12px;
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 4px;
+    border: 2px solid #d8c3a5;
+}
+.card_image{
+    width: 50%;
+}
+.card_text{
+    text-align: center;
+    padding: 5px;
+}
+
+footer{
+    margin-top: 25px;
+    background-color: black;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer_icons{
+    width: 50px;
+}
+
+#contact_section{
+    margin-top: 12px ;
+    margin-bottom: 12px;
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+}
+h1{
+    text-align: center;
+    font-family: 'satisfy';
+    font-size: 4rem;
+    text-shadow: 2px 2px 2px white;
+}
+h4{
+    color: white;
+}
+
+#carousel_container{
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel_image{
+    border-radius: 12px;
+    height: 80vh;
+}

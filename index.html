@@ -3,10 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/Coffee Shop Logo.png">
+    <link rel="icon" type="image/png" href="images/coffee_shop_logo.png">
     <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Dancing+Script:wght@400..700&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Electrolize&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Satisfy&family=Story+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <div id="header_left">
+            <a href="pages/vision.html">
+                <div class="buttons">
+                Vision
+                </div>
+            </a>
+            <a href="pages/mission.html">
+                <div class="buttons">
+                Mission
+                </div>
+            </a>
+            <a href="pages/contact_us.html">
+                <div class="buttons">
+                Contact Us
+                </div>
+            </a>
+        </div>
+        <div id="header_title">
+            Cuppa Haven
+        </div>
+        <div id="header_right">
+            <a href="pages/menu.html">
+                <div class="buttons">
+                Menu
+                </div>
+            </a>
+            <a href="pages/location.html">
+                <div class="buttons">
+                Location
+                </div>
+            </a>
+            <a href="pages/job_opportunities.html">
+                <div class="buttons">
+                Job Opportunities
+                </div>
+            </a>
+        </div>
+    </header>
+    <div id="main_section">
+        <div id="coffee_container">
+            <img id="coffee_picture" src="images/coffee_cup.png" alt="Coffee Picture">
+        </div>
+        <div id="section_text">
+           “Your everyday coffee, made with care.”
+        </div>
+    </div>
+
+    <h1>Our Delicacies</h1>
+
+    <div id="carousel_container">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+            <img class="carousel_image" src="images/carousel_image_one.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+            <img class="carousel_image" src="images/carousel_image_two.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img class="carousel_image" src="images/carousel_image_three.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img class="carousel_image" src="images/carousel_image_four.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img class="carousel_image" src="images/carousel_image_five.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        </div>
+    </div>
+
+    <div id="content_section">
+        <div id="section_container">
+            <div class="cards">
+                <img class="card_image" src="images/coffee_cup.png" alt="Card Image">
+                <div class="card_text">
+                    <h2 class="card_title">Coffee</h2>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Pariatur amet voluptas tempora laudantium eveniet explicabo ratione doloremque, 
+                    nihil fugiat aliquid consectetur officiis nobis itaque cupiditate corporis debitis libero natus ullam?
+                </div>
+            </div>
+            <div class="cards">
+                <img class="card_image" src="images/coffee_cup.png" alt="Card Image">
+                <div class="card_text">
+                    <h2 class="card_title">Coffee</h2>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Pariatur amet voluptas tempora laudantium eveniet explicabo ratione doloremque, 
+                    nihil fugiat aliquid consectetur officiis nobis itaque cupiditate corporis debitis libero natus ullam?
+                </div>
+            </div>
+            <div class="cards">
+                <img class="card_image" src="images/coffee_cup.png" alt="Card Image">
+                <div class="card_text">
+                    <h2 class="card_title">Coffee</h2>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Pariatur amet voluptas tempora laudantium eveniet explicabo ratione doloremque, 
+                    nihil fugiat aliquid consectetur officiis nobis itaque cupiditate corporis debitis libero natus ullam?
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div id="contact_section">
+            <img class="footer_icons" src="images/facebook_icon.png" alt="Facebook">
+            <img class="footer_icons" src="images/instagram_icon.png" alt="Facebook">
+            <img class="footer_icons" src="images/phone_icon.png" alt="Facebook">
+            <img class="footer_icons" src="images/whatsapp_icon.png" alt="Facebook">
+            <img class="footer_icons" src="images/messenger_icon.png" alt="Facebook">
+        </div>
+        <h4 id="copyright">Copyright @Cuppa Haven 2025</h3>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

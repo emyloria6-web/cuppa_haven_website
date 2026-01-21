@@ -14,6 +14,7 @@
 #coffee_picture{
     width: 75%;
 }
+
 #section_text{
    width: 40%;
    font-size: 3rem;
@@ -34,10 +35,10 @@
     display: flex;
     justify-content: space-around;
     width: 80%;
-    padding: 3rem;
     box-shadow: 0 0 34px white;
     margin-top: 3rem;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 
 .cards{
@@ -47,9 +48,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: white;
     padding: 4px;
     border: 2px solid #d8c3a5;
+    min-width: 275px;
+    margin: 2rem;
 }
 .card_image{
     width: 50%;
@@ -68,13 +72,47 @@ h1{
 }
 
 #carousel_container{
-    margin-bottom: 4rem;
     display: flex;
     justify-content: center;
 }
 
 .carousel_image{
-    border-radius: 12px;
+    border-radius: 24px;
     height: 80vh;
+    width: 100vw;
     z-index: 10;
+    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media(width <= 900px){
+    #main_section{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .carousel_image{
+        height: 50vh;
+    }
+    #section_text{
+        width: 100%;
+    }
+    #section_container{
+        width: 100vw;
+        padding: 2rem;
+    }
+}
+
+@media(width <= 576px){
+    .cards{
+        margin-left: 0;
+        margin-right:0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .carousel_image{
+        height: 30vh;
+    }
 }

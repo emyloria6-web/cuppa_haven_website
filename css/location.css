@@ -1,0 +1,55 @@
+h1{
+    font-size: 4rem;
+    margin: 2rem;
+    text-shadow: 4px 4px 4px rgb(170, 106, 32);
+    background-color: rgb(247, 201, 176);
+    border-radius: 4px;
+    width: fit-content;
+    padding: .5rem;
+    font-family: 'satisfy';
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main_section{
+    padding-left: 4rem;
+    padding-right: 4rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 4rem;
+    align-items: center;
+}
+
+#map_container{
+    width: 100%;
+    height: 80vh;
+    align-items: center;
+}
+
+#location_info_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#location_info_card{
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: start;
+    font-size: 1.25rem;
+    width: 75%;
+    border: 2px solid gray;
+}
+
+.title{
+    display: block;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+#gif{
+    width:65%;
+}

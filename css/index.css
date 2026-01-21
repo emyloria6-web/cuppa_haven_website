@@ -1,43 +1,3 @@
-body{
-    background-color: #CDBF93;
-    padding: 0px !important;
-    margin: 0 !important;
-}
-
-header{
-    display: flex;
-    justify-content: space-around;
-    background-color: #4B2500;
-    height: auto;
-    color: white;
-    font-family: 'satisfy';
-    align-items: center;
-    border: 2px solid white;
-}
-a{
-    text-decoration: none;
-    color: inherit;
-}
-
-a:hover{
-    color: #d8c3a5;
-}
-
-#header_left{
-    display: flex;
-    font-size: 2rem;
-    justify-content: space-around;
-    width: 30%;
-}
-#header_title{
-    font-size: 3rem;
-}
-#header_right{
-    display: flex;
-    font-size: 2rem;
-    width: 30%;
-    justify-content: space-around;
-}
 #main_section{
     margin-top: 12px;
     display: flex;
@@ -100,35 +60,11 @@ a:hover{
     padding: 5px;
 }
 
-footer{
-    margin-top: 25px;
-    background-color: black;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer_icons{
-    width: 50px;
-}
-
-#contact_section{
-    margin-top: 12px ;
-    margin-bottom: 12px;
-    width: 30%;
-    display: flex;
-    justify-content: space-evenly;
-}
 h1{
     text-align: center;
     font-family: 'satisfy';
     font-size: 4rem;
     text-shadow: 2px 2px 2px white;
-}
-h4{
-    color: white;
 }
 
 #carousel_container{
@@ -140,4 +76,5 @@ h4{
 .carousel_image{
     border-radius: 12px;
     height: 80vh;
+    z-index: 10;
 }

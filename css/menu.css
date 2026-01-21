@@ -38,19 +38,22 @@
 .card_title{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 75%;
+    padding: 1rem;
 }
 
 .card_image{
     width: 100%;
     border-radius: 12px;
     border-radius: 2px solid black;
+    display: block;
 }
 
 .card_price{
     font-family: 'satisfy';
     font-size: 3rem;
+    padding: 1rem;
 }
 .product_name_container{
     text-align: center;

@@ -17,11 +17,15 @@ header{
     font-family: 'satisfy';
     align-items: center;
     border: 2px solid white;
-    position: sticky;
-    top: 0;
     z-index: 20;
     padding-left: 2rem;
     padding-right: 2rem;
+    position: sticky;
+    top: 0;
+}
+
+#header_title{
+    flex: 2;
 }
 
 #coffee_shop_logo{
@@ -32,7 +36,6 @@ header{
 .business_name{
     display: inline;
     font-size: 3rem;
-    margin-left: 2rem;
     font-weight: bolder;
 }
 
@@ -60,6 +63,7 @@ a:hover{
     font-size: 2rem;
     justify-content: space-around;
     gap: 2rem;
+    flex: 3;
     flex-wrap: wrap;
 }
 
@@ -91,31 +95,45 @@ h4{
     font-size: 1.5rem;
 }
 
-@media(width <= 900px){
+@media(width <= 1156px){
     header{
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
+
     #header_title{
-        width: 70%;
+        align-items: center;
         text-align: center;
+        flex: 1;
+    }
+
+    #header_nav{
+        font-size: 1.5rem !important;
+        padding-bottom: none;
+        padding-top: none;
+        width: 100%;
+        flex: 4;
     }
     #contact_section{
         width: 100%;
     }
-}
-
-@media(width <= 596px){
-    #header_title{
-        width: 100%;
-        text-align: center;
-    }
     .business_name{
         display: none;
     }
+}
 
+@media(width <= 576px){
+    header{
+        justify-content: center;
+    }
+    #header_title{
+        display: none;
+    }
     #header_nav{
         font-size: 1.5rem;
+        flex: 1;
     }
 
     #contact_section{

@@ -24,6 +24,7 @@
    align-items: center;
    padding-right: 48px;
 }
+
 #content_section{
     display: flex;
     justify-content:center;
@@ -85,6 +86,8 @@ h1{
     object-fit: contain;
     object-position: center;
 }
+
+/* Code for responsiveness */
 
 @media(width <= 900px){
     #main_section{

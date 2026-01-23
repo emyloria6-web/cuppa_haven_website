@@ -26,6 +26,8 @@
     display: flex;
     margin-bottom: 3rem;
     gap: 2rem;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .menu_card{
@@ -75,7 +77,7 @@
     color: white;
 }
 
-@media(width <= 1576px){
+@media(width <= 1300px){
     #title_section{
         margin-bottom: 2rem;
     }
@@ -83,7 +85,6 @@
         margin-left: 4rem;
         margin-right: 4rem;
         gap: 1rem;
-        flex-direction: column;
     }
     .menu_card{
         padding: 2rem;
@@ -104,9 +105,6 @@
 @media(width <= 576px){
     #title_section{
         margin-bottom: 1rem;
-    }
-    .content_row{
-        margin: 1rem;
     }
     .card_title{
         flex-direction: column;

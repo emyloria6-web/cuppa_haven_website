@@ -48,7 +48,7 @@ a:hover{
     color: #dd7b4e;
 }
 
-#now_link{
+.now_link{
     font-weight: bold;
     text-decoration: underline;
     color: rgb(207, 99, 36);

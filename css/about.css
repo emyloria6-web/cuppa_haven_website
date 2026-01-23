@@ -65,7 +65,6 @@
         transform: rotate(90deg);
         min-height: 450px;
     }
-
 }
 
 @media(width <= 576px){

@@ -4,19 +4,8 @@
     margin-bottom: 24px;
 }
 
-#coffee_container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-}
-
-#coffee_picture{
-    width: 75%;
-}
-
 #section_text{
-   width: 40%;
+   flex: 1;
    font-size: 3rem;
    color: #5a3f31;
    text-align: center;
@@ -35,7 +24,7 @@
     border-radius: 12px;
     display: flex;
     justify-content: space-around;
-    width: 80%;
+    width: 85%;
     box-shadow: 0 0 34px white;
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -45,7 +34,7 @@
 .cards{
     background-color: #422C0E;
     border-radius: 12px;
-    width: 28%;
+    width: 26%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +42,7 @@
     color: white;
     padding: 1.5rem;
     border: 2px solid #d8c3a5;
-    min-width: 275px;
+    min-width: 250px;
     margin: 2rem;
 }
 .card_image{
@@ -87,6 +76,43 @@ h1{
     object-position: center;
 }
 
+#image-container{
+    flex: 2;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#image-container img {
+  width: 300px;
+  height: auto;
+}
+
+
+/* CSS from anime.js */
+.ml7 {
+  position: relative;
+  font-weight: 900;
+  font-size: 2.5rem;
+  font-family:Arial, Helvetica, sans-serif !important;
+}
+.ml7 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+.ml7 .letter {
+  transform-origin: 0 100%;
+  display: inline-block;
+  line-height: 1em;
+}
+/*  */
+
 /* Code for responsiveness */
 
 @media(width <= 900px){
@@ -117,5 +143,9 @@ h1{
     }
     .carousel_image{
         height: 30vh;
+    }
+    #image-container img {
+    width: 250px;
+    height: auto;
     }
 }

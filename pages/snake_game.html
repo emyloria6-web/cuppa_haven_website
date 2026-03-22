@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game</title>
+  <link rel="stylesheet" href="../css/snake_game.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <h1 class="title">SNAKE</h1>
+
+    <div class="hud">
+      <div class="hud-box">
+        <span class="hud-label">Score</span>
+        <span class="hud-value" id="score">0</span>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Best</span>
+        <span class="hud-value" id="best">0</span>
+      </div>
+    </div>
+
+    <canvas id="canvas" width="360" height="360"></canvas>
+
+    <p id="msg">Press <strong>Start</strong> or any arrow key</p>
+
+    <div class="btn-row">
+      <button id="btn-start">Start</button>
+      <button id="btn-restart" class="hidden">Restart</button>
+    </div>
+
+    <div id="d-pad">
+      <div></div>
+      <button data-dir="UP">▲</button>
+      <div></div>
+      <button data-dir="LEFT">◀</button>
+      <div></div>
+      <button data-dir="RIGHT">▶</button>
+      <div></div>
+      <button data-dir="DOWN">▼</button>
+      <div></div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../snake_game.js"></script>
+</body>
+</html>

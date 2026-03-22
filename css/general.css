@@ -122,6 +122,9 @@ h4{
     .business_name{
         display: none;
     }
+    .footer_icons{
+        width: 40px;
+    }
 }
 
 @media(width <= 576px){

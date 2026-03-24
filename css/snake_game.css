@@ -1,134 +1,61 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #111;
-  color: #f0f0f0;
-  font-family: 'Courier New', Courier, monospace;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 2rem 1rem;
-}
-
-.wrapper {
+.game-container{
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  width: 100%;
-  max-width: 400px;
 }
 
-.title {
+.title{
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  color: #7f77dd;
+  color: #5d3a29;
 }
 
-/* HUD */
-.hud {
-  display: flex;
-  gap: 2rem;
-}
-
-.hud-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.hud-label {
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: #888;
-  text-transform: uppercase;
-}
-
-.hud-value {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #f0f0f0;
-}
-
-/* Canvas */
-#canvas {
-  border: 2px solid #2a2a2a;
+#snake-board{
+  border: 4px solid #000000;
   border-radius: 6px;
   display: block;
-  background: #1a1a1a;
+  background-color: orange;
 }
 
 /* Message */
-#msg {
+#message{
   font-size: 13px;
   color: #888;
   min-height: 20px;
   text-align: center;
 }
 
-#msg strong {
-  color: #f0f0f0;
+#message strong{
+  color: #000000;
 }
 
 /* Buttons */
-.btn-row {
+.btn-row{
   display: flex;
   gap: 10px;
 }
 
-button {
-  background: transparent;
-  border: 1.5px solid #444;
+button{
+  background-color: rgb(130, 71, 56);
+  border: 4px solid #3d0d0d;
   color: #f0f0f0;
-  font-family: inherit;
   font-size: 13px;
   padding: 8px 20px;
   border-radius: 4px;
   cursor: pointer;
-  letter-spacing: 0.08em;
-  transition: border-color 0.15s, background 0.15s;
 }
 
-button:hover {
-  border-color: #7f77dd;
-  background: rgba(127, 119, 221, 0.1);
+button:hover{
+  border-color: #ffffff;
+  background: rgba(57, 26, 26, 0.914);
 }
 
-button:active {
+button:active{
   transform: scale(0.97);
 }
 
-.hidden {
+.hidden{
   display: none;
-}
-
-/* D-Pad */
-#d-pad {
-  display: grid;
-  grid-template-columns: repeat(3, 44px);
-  grid-template-rows: repeat(3, 44px);
-  gap: 4px;
-}
-
-#d-pad button {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  border-radius: 6px;
-}
-
-#d-pad div {
-  width: 44px;
-  height: 44px;
 }

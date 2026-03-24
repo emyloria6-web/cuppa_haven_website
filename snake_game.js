@@ -1,187 +1,248 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const scoreEl = document.getElementById('score');
-const bestEl = document.getElementById('best');
-const msgEl = document.getElementById('msg');
-const btnStart = document.getElementById('btn-start');
-const btnRestart = document.getElementById('btn-restart');
+var canvas = document.getElementById('snake-board');
+var context = canvas.getContext('2d');
+var messageElement = document.getElementById('message');
+var startButton = document.getElementById('btn-start');
+var restartButton = document.getElementById('btn-restart');
 
-const COLS = 18;
-const ROWS = 18;
-const CELL = canvas.width / COLS;
-const SPEED = 130; // ms per tick
+var NUMBER_OF_COLUMNS = 18;
+var NUMBER_OF_ROWS = 18;
+var CELL_SIZE = canvas.width / NUMBER_OF_COLUMNS;
+var GAME_SPEED = 250; // how many milliseconds between each movement
 
-const DIRS = {
-  UP:    [0, -1],
-  DOWN:  [0,  1],
-  LEFT:  [-1, 0],
-  RIGHT: [1,  0]
-};
+var snakeSegments = [];        
+var currentDirection = [1, 0];  
+var nextDirection = [1, 0];   
+var foodPosition = { x: 0, y: 0 };
+var gameIsRunning = false;
+var gameLoop;
 
-let snake, dir, nextDir, food, score, best = 0, running = false, loop;
-
-// ─── Utilities ────────────────────────────────────────────────────────────────
-
-function rand(max) {
+//Get a random number between 0 and max
+function getRandomNumber(max){
   return Math.floor(Math.random() * max);
 }
 
-function spawnFood() {
-  let pos;
-  do {
-    pos = { x: rand(COLS), y: rand(ROWS) };
-  } while (snake.some(s => s.x === pos.x && s.y === pos.y));
-  food = pos;
-}
+//Place food in a random empty cell
+function placeFood(){
+  var position = { x: 0, y: 0 };
+  var landedOnSnake = true;
 
-// ─── Game logic ───────────────────────────────────────────────────────────────
+  // keep trying until the food lands on an empty cell
+  while (landedOnSnake) {
+    position.x = getRandomNumber(NUMBER_OF_COLUMNS);
+    position.y = getRandomNumber(NUMBER_OF_ROWS);
 
-function init() {
-  snake   = [{ x: 9, y: 9 }, { x: 8, y: 9 }, { x: 7, y: 9 }];
-  dir     = [1, 0];
-  nextDir = [1, 0];
-  score   = 0;
-  scoreEl.textContent = 0;
-  spawnFood();
-  draw();
-}
+    landedOnSnake = false;
 
-function tick() {
-  dir = nextDir;
-
-  const head = {
-    x: snake[0].x + dir[0],
-    y: snake[0].y + dir[1]
-  };
-
-  // Wall collision
-  if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS) {
-    endGame(); return;
-  }
-
-  // Self collision
-  if (snake.some(s => s.x === head.x && s.y === head.y)) {
-    endGame(); return;
-  }
-
-  snake.unshift(head);
-
-  // Eat food
-  if (head.x === food.x && head.y === food.y) {
-    score++;
-    scoreEl.textContent = score;
-    if (score > best) {
-      best = score;
-      bestEl.textContent = best;
+    for (var i = 0; i < snakeSegments.length; i++) {
+      if (snakeSegments[i].x === position.x && snakeSegments[i].y === position.y) {
+        landedOnSnake = true;
+      }
     }
-    spawnFood();
-  } else {
-    snake.pop();
   }
 
-  draw();
+  foodPosition = position;
 }
 
-// ─── Rendering ────────────────────────────────────────────────────────────────
+//Check if the snake's head has hit itself
 
-function draw() {
-  // Background
-  ctx.fillStyle = '#1a1a1a';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Grid lines
-  ctx.strokeStyle = 'rgba(255,255,255,0.03)';
-  ctx.lineWidth = 0.5;
-  for (let r = 0; r <= ROWS; r++) {
-    ctx.beginPath();
-    ctx.moveTo(0, r * CELL);
-    ctx.lineTo(canvas.width, r * CELL);
-    ctx.stroke();
+function snakeHitItself(headX, headY){
+  for (var i = 0; i < snakeSegments.length; i++) {
+    if (snakeSegments[i].x === headX && snakeSegments[i].y === headY) {
+      return true;
+    }
   }
-  for (let c = 0; c <= COLS; c++) {
-    ctx.beginPath();
-    ctx.moveTo(c * CELL, 0);
-    ctx.lineTo(c * CELL, canvas.height);
-    ctx.stroke();
-  }
+  return false;
+}
 
-  // Snake
-  snake.forEach((seg, i) => {
-    const isHead = i === 0;
-    const pad = isHead ? 1 : 2;
-    ctx.fillStyle = isHead ? '#7f77dd' : '#534AB7';
-    ctx.beginPath();
-    ctx.roundRect(seg.x * CELL + pad, seg.y * CELL + pad, CELL - pad * 2, CELL - pad * 2, 4);
-    ctx.fill();
-  });
+// ─── Draw a rectangle with rounded corners ────────────────────────────────────
+// (canvas does not support this by default in older browsers, so we draw it manually)
 
-  // Food
-  ctx.fillStyle = '#ef9f27';
-  ctx.beginPath();
-  ctx.arc(
-    food.x * CELL + CELL / 2,
-    food.y * CELL + CELL / 2,
-    CELL / 2 - 3,
+function drawRoundedRectangle(x, y, width, height, radius){
+  context.beginPath();
+  context.moveTo(x + radius, y);
+  context.lineTo(x + width - radius, y);
+  context.arcTo(x + width, y,          x + width, y + radius,          radius);
+  context.lineTo(x + width, y + height - radius);
+  context.arcTo(x + width, y + height, x + width - radius, y + height, radius);
+  context.lineTo(x + radius, y + height);
+  context.arcTo(x,           y + height, x,         y + height - radius, radius);
+  context.lineTo(x,           y + radius);
+  context.arcTo(x,           y,          x + radius, y,                  radius);
+  context.closePath();
+  context.fill();
+}
+
+//Draw everything on the canvas
+
+function draw(){
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  //Draw the food as a white circle
+  context.fillStyle = '#ffffff';
+  context.beginPath();
+  context.arc(
+    foodPosition.x * CELL_SIZE + CELL_SIZE / 2,
+    foodPosition.y * CELL_SIZE + CELL_SIZE / 2,
+    CELL_SIZE / 2 - 3,
     0,
     Math.PI * 2
   );
-  ctx.fill();
+  context.fill();
+
+  //Draw each segment of the snake
+  for (var i = 0; i < snakeSegments.length; i++) {
+    var segment = snakeSegments[i];
+    var padding;
+
+    if (i === 0) {
+      //To draw the head bigger
+      padding = 1;
+      context.fillStyle = '#522608';
+    } else {
+      padding = 2;
+      context.fillStyle = '#8d5314';
+    }
+
+    drawRoundedRectangle(
+      segment.x * CELL_SIZE + padding,
+      segment.y * CELL_SIZE + padding,
+      CELL_SIZE - padding * 2,
+      CELL_SIZE - padding * 2,
+      4
+    );
+  }
 }
 
-// ─── State transitions ────────────────────────────────────────────────────────
-
-function startGame() {
-  if (running) return;
-  running = true;
-  init();
-  msgEl.textContent = 'Use arrow keys or the d-pad';
-  btnStart.classList.add('hidden');
-  btnRestart.classList.remove('hidden');
-  loop = setInterval(tick, SPEED);
+//Set up a fresh game
+function setupGame(){
+  snakeSegments = [
+    { x: 9, y: 9 },
+    { x: 8, y: 9 },
+    { x: 7, y: 9 }
+  ];
+  currentDirection = [1, 0];
+  nextDirection    = [1, 0];
+  placeFood();
+  draw();
 }
 
-function endGame() {
-  clearInterval(loop);
-  running = false;
-  msgEl.innerHTML = `Game over! Score: <strong>${score}</strong>`;
+//To do a step of the snake
+function moveSnake(){
+  currentDirection = nextDirection;
+
+  var newHeadX = snakeSegments[0].x + currentDirection[0];
+  var newHeadY = snakeSegments[0].y + currentDirection[1];
+
+  //Check if the snake hit a wall
+  if (newHeadX < 0 || newHeadX >= NUMBER_OF_COLUMNS || newHeadY < 0 || newHeadY >= NUMBER_OF_ROWS) {
+    endGame();
+    return;
+  }
+
+  //Check if the snake hit itself
+  if (snakeHitItself(newHeadX, newHeadY)) {
+    endGame();
+    return;
+  }
+
+  //Add new head to the front of the snake
+  var newHead = { x: newHeadX, y: newHeadY };
+  snakeSegments.unshift(newHead);
+
+  //Eat the food if it hits the head
+  if (newHeadX === foodPosition.x && newHeadY === foodPosition.y) {
+    placeFood();
+  } else {
+    snakeSegments.pop();
+  }
+
+  draw();
 }
 
-function restartGame() {
-  clearInterval(loop);
-  running = false;
+//Start game
+function startGame(){
+  if (gameIsRunning) {
+    return;
+  }
+
+  setupGame();
+  gameIsRunning = true;
+  messageElement.textContent = 'Use arrow keys to move';
+  startButton.classList.add('hidden');
+  restartButton.classList.remove('hidden');
+  gameLoop = setInterval(moveSnake, GAME_SPEED);
+}
+
+//End game
+function endGame(){
+  clearInterval(gameLoop);
+  gameIsRunning = false;
+  messageElement.textContent = 'Game over!';
+}
+
+//Restart Game
+function restartGame(){
+  clearInterval(gameLoop);
+  gameIsRunning = false;
   startGame();
 }
 
-// ─── Input handling ───────────────────────────────────────────────────────────
+//Match keyboard input
+function changeDirection(directionName){
+  var newX;
+  var newY;
 
-function setDir(d) {
-  const [dx, dy] = DIRS[d];
-  // Prevent reversing
-  if (dx === -dir[0] && dy === -dir[1]) return;
-  nextDir = [dx, dy];
-  if (!running) startGame();
+  if (directionName === 'UP') {
+    newX = 0;
+    newY = -1;
+  } else if (directionName === 'DOWN') {
+    newX = 0;
+    newY = 1;
+  } else if (directionName === 'LEFT') {
+    newX = -1;
+    newY = 0;
+  } else if (directionName === 'RIGHT') {
+    newX = 1;
+    newY = 0;
+  }
+
+  //Do not allow the snake to reverse into itself
+  if (newX === -currentDirection[0] && newY === -currentDirection[1]) {
+    return;
+  }
+
+  nextDirection = [newX, newY];
+
+  if (!gameIsRunning) {
+    startGame();
+  }
 }
 
-document.addEventListener('keydown', e => {
-  const map = {
-    ArrowUp:    'UP',
-    ArrowDown:  'DOWN',
-    ArrowLeft:  'LEFT',
-    ArrowRight: 'RIGHT'
-  };
-  if (map[e.key]) {
-    e.preventDefault();
-    setDir(map[e.key]);
+//Check for arrow key presses
+document.addEventListener('keydown', function(event){
+  if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    changeDirection('UP');
+  } else if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    changeDirection('DOWN');
+  } else if (event.key === 'ArrowLeft') {
+    event.preventDefault();
+    changeDirection('LEFT');
+  } else if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    changeDirection('RIGHT');
   }
 });
 
-document.querySelectorAll('#d-pad [data-dir]').forEach(btn => {
-  btn.addEventListener('click', () => setDir(btn.dataset.dir));
+//Button listeners
+startButton.addEventListener('click', function(){
+  startGame();
 });
 
-btnStart.addEventListener('click', startGame);
-btnRestart.addEventListener('click', restartGame);
+restartButton.addEventListener('click', function(){
+  restartGame();
+});
 
-// ─── Boot ─────────────────────────────────────────────────────────────────────
-
-init();
+// Start the page when it loads
+setupGame();

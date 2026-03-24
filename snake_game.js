@@ -7,7 +7,7 @@ var restartButton = document.getElementById('btn-restart');
 var NUMBER_OF_COLUMNS = 18;
 var NUMBER_OF_ROWS = 18;
 var CELL_SIZE = canvas.width / NUMBER_OF_COLUMNS;
-var GAME_SPEED = 250; // how many milliseconds between each movement
+var GAME_SPEED = 250; //How many milliseconds between each movement
 
 var snakeSegments = [];        
 var currentDirection = [1, 0];  
@@ -26,7 +26,7 @@ function placeFood(){
   var position = { x: 0, y: 0 };
   var landedOnSnake = true;
 
-  // keep trying until the food lands on an empty cell
+  //Keep trying until the food lands on an empty cell
   while (landedOnSnake) {
     position.x = getRandomNumber(NUMBER_OF_COLUMNS);
     position.y = getRandomNumber(NUMBER_OF_ROWS);
@@ -44,7 +44,6 @@ function placeFood(){
 }
 
 //Check if the snake's head has hit itself
-
 function snakeHitItself(headX, headY){
   for (var i = 0; i < snakeSegments.length; i++) {
     if (snakeSegments[i].x === headX && snakeSegments[i].y === headY) {
@@ -54,26 +53,7 @@ function snakeHitItself(headX, headY){
   return false;
 }
 
-// ─── Draw a rectangle with rounded corners ────────────────────────────────────
-// (canvas does not support this by default in older browsers, so we draw it manually)
-
-function drawRoundedRectangle(x, y, width, height, radius){
-  context.beginPath();
-  context.moveTo(x + radius, y);
-  context.lineTo(x + width - radius, y);
-  context.arcTo(x + width, y,          x + width, y + radius,          radius);
-  context.lineTo(x + width, y + height - radius);
-  context.arcTo(x + width, y + height, x + width - radius, y + height, radius);
-  context.lineTo(x + radius, y + height);
-  context.arcTo(x,           y + height, x,         y + height - radius, radius);
-  context.lineTo(x,           y + radius);
-  context.arcTo(x,           y,          x + radius, y,                  radius);
-  context.closePath();
-  context.fill();
-}
-
 //Draw everything on the canvas
-
 function draw(){
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -92,23 +72,18 @@ function draw(){
   //Draw each segment of the snake
   for (var i = 0; i < snakeSegments.length; i++) {
     var segment = snakeSegments[i];
-    var padding;
 
     if (i === 0) {
-      //To draw the head bigger
-      padding = 1;
       context.fillStyle = '#522608';
     } else {
-      padding = 2;
       context.fillStyle = '#8d5314';
     }
 
-    drawRoundedRectangle(
-      segment.x * CELL_SIZE + padding,
-      segment.y * CELL_SIZE + padding,
-      CELL_SIZE - padding * 2,
-      CELL_SIZE - padding * 2,
-      4
+    context.fillRect(
+      segment.x * CELL_SIZE,
+      segment.y * CELL_SIZE,
+      CELL_SIZE,
+      CELL_SIZE
     );
   }
 }
@@ -244,5 +219,5 @@ restartButton.addEventListener('click', function(){
   restartGame();
 });
 
-// Start the page when it loads
+//Start the page when it loads
 setupGame();
